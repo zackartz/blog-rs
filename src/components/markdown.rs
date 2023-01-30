@@ -10,20 +10,15 @@ fn markdown_to_html(markdown: &str) -> String {
 }
 
 #[component]
-pub fn Markdown(cx: Scope) -> impl IntoView {
+pub fn Markdown(_cx: Scope, _md: String) -> impl IntoView {
     #[cfg(not(target_arch = "wasm32"))]
     {
-        let el = leptos::HtmlElement::from_html(cx, leptos::A::default(), {
+        leptos::HtmlElement::from_html(_cx, leptos::A::default(), {
             let res = format!(
-                "<div class=\"prose prose-invert\">{}</div>",
-                markdown_to_html("# hello world\n```\ncodeblock\n```")
+                "<article class=\"block w-full max-w-none prose prose-invert\">{}</article>",
+                markdown_to_html(&_md)
             );
             res
-        });
-
-        el
+        })
     }
-    // view! { cx,
-    //     <h1>"Hello World"</h1>
-    // }
 }

@@ -35,7 +35,7 @@ pub fn App(cx: Scope) -> impl IntoView {
                     <Route path="/about" view=|cx| view! { cx, <About/> } />
                     <Route path="/blog" view=|cx| view! { cx, <Blog/> } />
                     <Route path="/blog/:id" view=|cx| view! { cx, <BlogPost/> }/>
-                    <Route path="/test" view=|cx| view! { cx, <Test /> }/>
+                    // <Route path="/test" view=|cx| view! { cx, <Test /> }/>
                 </Routes>
             </div>
         </div>
@@ -76,7 +76,7 @@ fn About(cx: Scope) -> impl IntoView {
 #[component]
 fn Blog(cx: Scope) -> impl IntoView {
     view! { cx,
-                <div class="w-full">
+                <div class="w-full ">
                     <h3 class="text-2xl text-stone-400 font-bold mt-10">"Recent Posts"</h3>
                     <div class="w-full grid grid-cols-2 gap-4 mt-8">
                         <Post />
@@ -99,26 +99,26 @@ pub fn BlogPost(cx: Scope) -> impl IntoView {
             if id.is_empty() {
                 None
             } else {
-                Some("# markdown header".to_string())
+                Some("# markdown header\nthis is some markdown\n```\ncodeblock\n```".to_string())
             }
         },
     );
 
     view! { cx,
-        <div>
+        <div class="mt-8 w-full flex justify-center">
             <Suspense fallback=|| view! { cx, "Loading..." }>
                 {move || match post.read() {
-                    None => view! {cx, <div>"Error loading post!"</div>},
-                    Some(v) => view! {cx, <div>{v}</div>}
+                    None => view! {cx, <Markdown _md="error loading post".to_string() />},
+                    Some(v) => view! {cx, <Markdown _md=v.unwrap() />}
                 }}
             </Suspense>
         </div>
     }
 }
 
-#[component]
-pub fn Test(cx: Scope) -> impl IntoView {
-    view! { cx,
-        <Markdown />
-    }
-}
+// #[component]
+// pub fn Test(cx: Scope) -> impl IntoView {
+//     view! { cx,
+//         <Markdown />
+//     }
+// }
