@@ -268,12 +268,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "anymap2"
-version = "0.13.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d301b3b94cb4b2f23d7917810addbbaff90738e0ca2be692bd027e70d7e0330c"
-
-[[package]]
 name = "askama_escape"
 version = "0.10.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -403,9 +397,9 @@ dependencies = [
 
 [[package]]
 name = "cc"
-version = "1.0.78"
+version = "1.0.79"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a20104e2335ce8a659d6dd92a51a767a0c062599c73b343fd152cb401e828c3d"
+checksum = "50d30906286121d95be3d479533b458f87493b30a4b5f79a607db8f5d11aa91f"
 dependencies = [
  "jobserver",
 ]
@@ -608,9 +602,9 @@ dependencies = [
 
 [[package]]
 name = "either"
-version = "1.8.0"
+version = "1.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "90e5c1c8368803113bf0c9584fc495a58b86dc8a29edbf8fe877d21d9507e797"
+checksum = "7fcaabb2fef8c910e7f4c7ce9f67a1283a1715879a7c230ca9d6d1ae31f16d91"
 
 [[package]]
 name = "encoding_rs"
@@ -822,87 +816,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "gloo"
-version = "0.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3a4bef6b277b3ab073253d4bca60761240cf8d6998f4bd142211957b69a61b20"
-dependencies = [
- "gloo-console",
- "gloo-dialogs",
- "gloo-events",
- "gloo-file",
- "gloo-history",
- "gloo-net",
- "gloo-render",
- "gloo-storage",
- "gloo-timers",
- "gloo-utils",
- "gloo-worker",
-]
-
-[[package]]
-name = "gloo-console"
-version = "0.2.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "82b7ce3c05debe147233596904981848862b068862e9ec3e34be446077190d3f"
-dependencies = [
- "gloo-utils",
- "js-sys",
- "serde",
- "wasm-bindgen",
- "web-sys",
-]
-
-[[package]]
-name = "gloo-dialogs"
-version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "67062364ac72d27f08445a46cab428188e2e224ec9e37efdba48ae8c289002e6"
-dependencies = [
- "wasm-bindgen",
- "web-sys",
-]
-
-[[package]]
-name = "gloo-events"
-version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "68b107f8abed8105e4182de63845afcc7b69c098b7852a813ea7462a320992fc"
-dependencies = [
- "wasm-bindgen",
- "web-sys",
-]
-
-[[package]]
-name = "gloo-file"
-version = "0.2.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a8d5564e570a38b43d78bdc063374a0c3098c4f0d64005b12f9bbe87e869b6d7"
-dependencies = [
- "futures-channel",
- "gloo-events",
- "js-sys",
- "wasm-bindgen",
- "web-sys",
-]
-
-[[package]]
-name = "gloo-history"
-version = "0.1.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dd451019e0b7a2b8a7a7b23e74916601abf1135c54664e57ff71dcc26dfcdeb7"
-dependencies = [
- "gloo-events",
- "gloo-utils",
- "serde",
- "serde-wasm-bindgen",
- "serde_urlencoded",
- "thiserror",
- "wasm-bindgen",
- "web-sys",
-]
-
-[[package]]
 name = "gloo-net"
 version = "0.2.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -923,43 +836,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "gloo-render"
-version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2fd9306aef67cfd4449823aadcd14e3958e0800aa2183955a309112a84ec7764"
-dependencies = [
- "wasm-bindgen",
- "web-sys",
-]
-
-[[package]]
-name = "gloo-storage"
-version = "0.2.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5d6ab60bf5dbfd6f0ed1f7843da31b41010515c745735c970e821945ca91e480"
-dependencies = [
- "gloo-utils",
- "js-sys",
- "serde",
- "serde_json",
- "thiserror",
- "wasm-bindgen",
- "web-sys",
-]
-
-[[package]]
-name = "gloo-timers"
-version = "0.2.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9b995a66bb87bebce9a0f4a95aed01daca4872c050bfcb21653361c03bc35e5c"
-dependencies = [
- "futures-channel",
- "futures-core",
- "js-sys",
- "wasm-bindgen",
-]
-
-[[package]]
 name = "gloo-utils"
 version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -969,23 +845,6 @@ dependencies = [
  "serde",
  "serde_json",
  "wasm-bindgen",
- "web-sys",
-]
-
-[[package]]
-name = "gloo-worker"
-version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "13471584da78061a28306d1359dd0178d8d6fc1c7c80e5e35d27260346e0516a"
-dependencies = [
- "anymap2",
- "bincode",
- "gloo-console",
- "gloo-utils",
- "js-sys",
- "serde",
- "wasm-bindgen",
- "wasm-bindgen-futures",
  "web-sys",
 ]
 
@@ -1166,8 +1025,8 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "leptos"
-version = "0.1.1"
-source = "git+https://github.com/leptos-rs/leptos#f24bad4bf2e903c3eb71db137e55f3b814473213"
+version = "0.1.3"
+source = "git+https://github.com/leptos-rs/leptos#62061f90ea29b83810edc25df7cb9b9c35cb9517"
 dependencies = [
  "cfg-if",
  "leptos_config",
@@ -1182,8 +1041,8 @@ dependencies = [
 
 [[package]]
 name = "leptos_actix"
-version = "0.1.1"
-source = "git+https://github.com/leptos-rs/leptos#f24bad4bf2e903c3eb71db137e55f3b814473213"
+version = "0.1.3"
+source = "git+https://github.com/leptos-rs/leptos#62061f90ea29b83810edc25df7cb9b9c35cb9517"
 dependencies = [
  "actix-web",
  "futures 0.3.25",
@@ -1196,8 +1055,8 @@ dependencies = [
 
 [[package]]
 name = "leptos_config"
-version = "0.1.1"
-source = "git+https://github.com/leptos-rs/leptos#f24bad4bf2e903c3eb71db137e55f3b814473213"
+version = "0.1.3"
+source = "git+https://github.com/leptos-rs/leptos#62061f90ea29b83810edc25df7cb9b9c35cb9517"
 dependencies = [
  "config",
  "fs",
@@ -1209,14 +1068,13 @@ dependencies = [
 
 [[package]]
 name = "leptos_dom"
-version = "0.1.1"
-source = "git+https://github.com/leptos-rs/leptos#f24bad4bf2e903c3eb71db137e55f3b814473213"
+version = "0.1.3"
+source = "git+https://github.com/leptos-rs/leptos#62061f90ea29b83810edc25df7cb9b9c35cb9517"
 dependencies = [
  "cfg-if",
  "drain_filter_polyfill",
  "educe",
  "futures 0.3.25",
- "gloo",
  "html-escape",
  "indexmap",
  "itertools",
@@ -1236,8 +1094,8 @@ dependencies = [
 
 [[package]]
 name = "leptos_macro"
-version = "0.1.1"
-source = "git+https://github.com/leptos-rs/leptos#f24bad4bf2e903c3eb71db137e55f3b814473213"
+version = "0.1.3"
+source = "git+https://github.com/leptos-rs/leptos#62061f90ea29b83810edc25df7cb9b9c35cb9517"
 dependencies = [
  "cfg-if",
  "convert_case 0.6.0",
@@ -1259,8 +1117,8 @@ dependencies = [
 
 [[package]]
 name = "leptos_meta"
-version = "0.1.1"
-source = "git+https://github.com/leptos-rs/leptos#f24bad4bf2e903c3eb71db137e55f3b814473213"
+version = "0.1.3"
+source = "git+https://github.com/leptos-rs/leptos#62061f90ea29b83810edc25df7cb9b9c35cb9517"
 dependencies = [
  "cfg-if",
  "leptos",
@@ -1271,8 +1129,8 @@ dependencies = [
 
 [[package]]
 name = "leptos_reactive"
-version = "0.1.1"
-source = "git+https://github.com/leptos-rs/leptos#f24bad4bf2e903c3eb71db137e55f3b814473213"
+version = "0.1.3"
+source = "git+https://github.com/leptos-rs/leptos#62061f90ea29b83810edc25df7cb9b9c35cb9517"
 dependencies = [
  "base64 0.21.0",
  "cfg-if",
@@ -1293,8 +1151,8 @@ dependencies = [
 
 [[package]]
 name = "leptos_router"
-version = "0.1.1"
-source = "git+https://github.com/leptos-rs/leptos#f24bad4bf2e903c3eb71db137e55f3b814473213"
+version = "0.1.3"
+source = "git+https://github.com/leptos-rs/leptos#62061f90ea29b83810edc25df7cb9b9c35cb9517"
 dependencies = [
  "bincode",
  "cfg-if",
@@ -1306,12 +1164,12 @@ dependencies = [
  "leptos",
  "linear-map",
  "log",
+ "percent-encoding",
  "regex",
  "serde",
  "serde_urlencoded",
  "thiserror",
  "url",
- "urlencoding",
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",
@@ -1319,8 +1177,8 @@ dependencies = [
 
 [[package]]
 name = "leptos_server"
-version = "0.1.1"
-source = "git+https://github.com/leptos-rs/leptos#f24bad4bf2e903c3eb71db137e55f3b814473213"
+version = "0.1.3"
+source = "git+https://github.com/leptos-rs/leptos#62061f90ea29b83810edc25df7cb9b9c35cb9517"
 dependencies = [
  "ciborium",
  "form_urlencoded",
@@ -2130,9 +1988,9 @@ checksum = "cda74da7e1a664f795bb1f8a87ec406fb89a02522cf6e50620d016add6dbbf5c"
 
 [[package]]
 name = "tokio"
-version = "1.24.2"
+version = "1.25.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "597a12a59981d9e3c38d216785b0c37399f6e415e8d0712047620f189371b0bb"
+checksum = "c8e00990ebabbe4c14c08aca901caed183ecd5c09562a12c824bb53d3c3fd3af"
 dependencies = [
  "autocfg",
  "bytes 1.3.0",
@@ -2289,12 +2147,6 @@ dependencies = [
  "idna",
  "percent-encoding",
 ]
-
-[[package]]
-name = "urlencoding"
-version = "2.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e8db7427f936968176eaa7cdf81b7f98b980b18495ec28f1b5791ac3bfe3eea9"
 
 [[package]]
 name = "utf8-width"

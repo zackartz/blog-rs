@@ -2,6 +2,7 @@ use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
 
+use crate::components::markdown::{Markdown, MarkdownProps};
 use crate::components::navbar::{Navbar, NavbarProps};
 use crate::components::post::{Post, PostProps};
 
@@ -34,6 +35,7 @@ pub fn App(cx: Scope) -> impl IntoView {
                     <Route path="/about" view=|cx| view! { cx, <About/> } />
                     <Route path="/blog" view=|cx| view! { cx, <Blog/> } />
                     <Route path="/blog/:id" view=|cx| view! { cx, <BlogPost/> }/>
+                    <Route path="/test" view=|cx| view! { cx, <Test /> }/>
                 </Routes>
             </div>
         </div>
@@ -114,5 +116,9 @@ pub fn BlogPost(cx: Scope) -> impl IntoView {
     }
 }
 
-//#[component]
-//pub fn Test(cx: Scope) -> impl IntoView {}
+#[component]
+pub fn Test(cx: Scope) -> impl IntoView {
+    view! { cx,
+        <Markdown />
+    }
+}
