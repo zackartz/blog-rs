@@ -2,9 +2,8 @@ use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
 
-use crate::components::markdown::{Markdown, MarkdownProps};
 use crate::components::navbar::{Navbar, NavbarProps};
-use crate::components::post::{Post, PostProps};
+use crate::components::post::{get_posts, BlogPost, BlogPostProps, Post, PostProps};
 
 #[component]
 pub fn App(cx: Scope) -> impl IntoView {
@@ -34,7 +33,7 @@ pub fn App(cx: Scope) -> impl IntoView {
                     <Route path="" view=|cx| view! { cx, <HomePage/> }/>
                     <Route path="/about" view=|cx| view! { cx, <About/> } />
                     <Route path="/blog" view=|cx| view! { cx, <Blog/> } />
-                    <Route path="/blog/:id" view=|cx| view! { cx, <BlogPost/> }/>
+                    <Route path="/blog/:slug" view=|cx| view! { cx, <BlogPost/> }/>
                     // <Route path="/test" view=|cx| view! { cx, <Test /> }/>
                 </Routes>
             </div>
@@ -47,28 +46,53 @@ pub fn App(cx: Scope) -> impl IntoView {
 /// Renders the home page of your application.
 #[component]
 fn HomePage(cx: Scope) -> impl IntoView {
+    let posts = create_resource(cx, move || (), move |_| get_posts(cx));
+
     view! { cx,
-                <div class="w-full">
-                    <h3 class="text-2xl text-stone-400 font-bold mt-10">"Recent Posts"</h3>
-                    <div class="w-full grid grid-cols-2 gap-4 mt-8">
-                        <Post />
-                        <Post />
-                        <Post />
-                        <Post />
-                    </div>
-                </div>
-                <div class="w-full border border-stone-800 mt-8" />
-                <p class="text-center mt-4 text-stone-700">"&copy Zachary Myers"</p>
+        <div class="w-full">
+            <h3 class="text-2xl text-stone-400 font-bold mt-10">"Recent Posts"</h3>
+                <Suspense fallback=|| view! { cx, "Loading..." }>
+                    {
+                        match posts.read() {
+                            Some(Ok(p)) => {
+                                view! { cx,
+                                    <div class="w-full grid grid-cols-2 gap-4 mt-8">
+                                    <For
+                                        each=move || p.clone()
+                                        key=|post| post.id
+                                        view=move |post: crate::components::post::BlogPostRow | {
+                                            view! {cx,
+                                                <Post p=post />
+                                            }
+                                        }
+                                    />
+                                    </div>
+                                }.into_any()
+                            },
+                            _ => view! {cx,
+                                <h1>"Error loading posts :("</h1>
+                            }.into_any(),
+                        }
+                    }
+                </Suspense>
+        </div>
+        <div class="w-full border border-stone-800 mt-8" />
+        <p class="text-center mt-4 text-stone-700">"© Zachary Myers"</p>
     }
 }
+
+// posts.iter().map(|p| {
+// view! { cx,
+//     <Post p=p.clone() />
+// }
 
 /// Renders the about page of your application.
 #[component]
 fn About(cx: Scope) -> impl IntoView {
     view! { cx,
-                <div class="w-full">
-                    <h3 class="text-2xl text-stone-400 font-bold mt-10">"About"</h3>
-                </div>
+        <div class="w-full">
+            <h3 class="text-2xl text-stone-400 font-bold mt-10">"About"</h3>
+        </div>
     }
 }
 
@@ -76,42 +100,10 @@ fn About(cx: Scope) -> impl IntoView {
 #[component]
 fn Blog(cx: Scope) -> impl IntoView {
     view! { cx,
-                <div class="w-full ">
-                    <h3 class="text-2xl text-stone-400 font-bold mt-10">"Recent Posts"</h3>
-                    <div class="w-full grid grid-cols-2 gap-4 mt-8">
-                        <Post />
-                        <Post />
-                        <Post />
-                        <Post />
-                    </div>
-                </div>
-    }
-}
-
-#[component]
-pub fn BlogPost(cx: Scope) -> impl IntoView {
-    let params = use_params_map(cx);
-
-    let post = create_resource(
-        cx,
-        move || params().get("id").cloned().unwrap_or_default(),
-        move |id| async move {
-            if id.is_empty() {
-                None
-            } else {
-                Some("# markdown header\nthis is some markdown\n```\ncodeblock\n```".to_string())
-            }
-        },
-    );
-
-    view! { cx,
-        <div class="mt-8 w-full flex justify-center">
-            <Suspense fallback=|| view! { cx, "Loading..." }>
-                {move || match post.read() {
-                    None => view! {cx, <Markdown _md="error loading post".to_string() />},
-                    Some(v) => view! {cx, <Markdown _md=v.unwrap() />}
-                }}
-            </Suspense>
+        <div class="w-full ">
+            <h3 class="text-2xl text-stone-400 font-bold mt-10">"Recent Posts"</h3>
+            <div class="w-full grid grid-cols-2 gap-4 mt-8">
+            </div>
         </div>
     }
 }

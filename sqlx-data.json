@@ -1,0 +1,89 @@
+{
+  "db": "PostgreSQL",
+  "63ac195b643a98f1bbc9e472883b1c4713bbca6ad49a03f3e75071e7e85aa738": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Int8"
+        },
+        {
+          "name": "title",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "slug",
+          "ordinal": 2,
+          "type_info": "Text"
+        },
+        {
+          "name": "post",
+          "ordinal": 3,
+          "type_info": "Text"
+        },
+        {
+          "name": "summary",
+          "ordinal": 4,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": []
+      }
+    },
+    "query": "SELECT * from posts"
+  },
+  "daa2556979cb060cf13c9eece980a98bc9ec9a32c0dca52cb0058e285c57407e": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Int8"
+        },
+        {
+          "name": "title",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "slug",
+          "ordinal": 2,
+          "type_info": "Text"
+        },
+        {
+          "name": "post",
+          "ordinal": 3,
+          "type_info": "Text"
+        },
+        {
+          "name": "summary",
+          "ordinal": 4,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "SELECT * from posts where slug = $1"
+  }
+}

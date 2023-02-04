@@ -5,8 +5,8 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        serif: ["Fira Code", "serif"]
+      sans: ["Inter", "sans-serif"],
+      serif: ["Fira Code", "serif"]
     },
     extend: {},
   },

@@ -8,7 +8,7 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 actix-files = { version = "0.6", optional = true }
-actix-web = { version = "4", optional = true, features = ["openssl", "macros"] }
+actix-web = { version = "4", optional = true, features = ["macros"] }
 console_error_panic_hook = "0.1"
 console_log = "0.2"
 cfg-if = "1"
@@ -22,12 +22,17 @@ log = "0.4"
 simple_logger = "4"
 wasm-bindgen = "0.2"
 pulldown-cmark = "0.9.2"
+sqlx = { version = "0.6.2", features = [ "runtime-tokio-rustls", "postgres", "uuid", "offline" ], optional = true }
+uuid = { version = "1.3.0", features = [ "v4", "serde", "js" ] }
+serde = { version = "1.0.152", features = [ "derive" ] }
+syntect = { version = "5.0.0", default-features = false, features = ["default-fancy"]}
 
 [features]
 hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]
 ssr = [
   "dep:actix-files",
   "dep:actix-web",
+  "dep:sqlx",
   "dep:leptos_actix",
   "leptos/ssr",
   "leptos_meta/ssr",
