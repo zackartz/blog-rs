@@ -9,11 +9,14 @@ use crate::components::markdown::{Markdown, MarkdownProps};
 cfg_if! {
     if #[cfg(feature = "ssr")] {
         use sqlx::{Pool, postgres::{Postgres, PgPoolOptions}};
+        use std::env;
 
         pub async fn db() -> Result<Pool<Postgres>, ServerFnError> {
+            let uri = env::var("DATABASE_URL").unwrap_or("postgres://postgres:postgres@localhost:5432/postgres".to_string());
+
             PgPoolOptions::new()
                 .max_connections(5)
-                .connect("postgres://postgres:postgres@localhost:5432/postgres")
+                .connect(&uri)
                 .await
             .map_err(|e| ServerFnError::ServerError(e.to_string()))
         }
