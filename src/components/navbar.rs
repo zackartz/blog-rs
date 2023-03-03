@@ -39,9 +39,14 @@ fn NavbarItem(cx: Scope, _l: Box<&'static str>) -> impl IntoView {
             href={
                 match *_l {
                     "Home" => "/".to_string(),
+                    "CV" => "/cv.pdf".to_string(),
                     _ => format!("/{}", _l.to_lowercase())
                 }
             }
+            target={match *_l {
+                "CV" => Some("_blank"),
+                _ => None
+            }}
             class="py-1 px-2 hover:bg-stone-800 hover:text-stone-500 border border-stone-900 rounded-md hover:border-stone-700 transition-all duration-150"
             >
             <p>{*_l}</p>

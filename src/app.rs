@@ -26,18 +26,18 @@ pub fn App(cx: Scope) -> impl IntoView {
         // content for this welcome page
         <Router>
             <main>
-            <div class="w-full h-screen bg-stone-900 flex justify-center">
-            <div class="w-3/5">
-                <Navbar />
-                <Routes>
-                    <Route path="" view=|cx| view! { cx, <HomePage/> }/>
-                    <Route path="/about" view=|cx| view! { cx, <About/> } />
-                    <Route path="/blog" view=|cx| view! { cx, <Blog/> } />
-                    <Route path="/blog/:slug" view=|cx| view! { cx, <BlogPost/> }/>
-                    // <Route path="/test" view=|cx| view! { cx, <Test /> }/>
-                </Routes>
-            </div>
-        </div>
+                <div class="w-full h-screen bg-stone-900 flex justify-center">
+                    <div class="w-3/5">
+                        <Navbar />
+                        <Routes>
+                            <Route path="" view=|cx| view! { cx, <HomePage/> }/>
+                            <Route path="/about" view=|cx| view! { cx, <About/> } />
+                            <Route path="/blog" view=|cx| view! { cx, <Blog/> } />
+                            <Route path="/blog/:slug" view=|cx| view! { cx, <BlogPost/> }/>
+                            // <Route path="/test" view=|cx| view! { cx, <Test /> }/>
+                        </Routes>
+                    </div>
+                </div>
             </main>
         </Router>
     }
@@ -53,19 +53,24 @@ fn HomePage(cx: Scope) -> impl IntoView {
             <h3 class="text-2xl text-stone-400 font-bold mt-10">"Recent Posts"</h3>
                 <Suspense fallback=|| view! { cx, "Loading..." }>
                     {
-                        match posts.read() {
+                        match posts.read(cx) {
                             Some(Ok(p)) => {
                                 view! { cx,
                                     <div class="w-full grid grid-cols-2 gap-4 mt-8">
-                                    <For
-                                        each=move || p.clone()
-                                        key=|post| post.id
-                                        view=move |post: crate::components::post::BlogPostRow | {
-                                            view! {cx,
+                                    // <For
+                                    //     each=move || p.clone()
+                                    //     key=|post| post.id
+                                    //     view=move |post: crate::components::post::BlogPostRow | {
+                                    //         view! {cx,
+                                    //             <Post p=post />
+                                    //         }
+                                    //     }
+                                    // />
+                                        {p.into_iter().map(move |post| {
+                                            view! { cx,
                                                 <Post p=post />
                                             }
-                                        }
-                                    />
+                                        }).collect::<Vec<_>>()}
                                     </div>
                                 }.into_any()
                             },
@@ -92,6 +97,7 @@ fn About(cx: Scope) -> impl IntoView {
     view! { cx,
         <div class="w-full">
             <h3 class="text-2xl text-stone-400 font-bold mt-10">"About"</h3>
+            <p class="text-stone-500 pt-2">"Hey there, I'm Zachary Myers, a self-taught software engineer originally from the sunny shores of Honolulu, HI. I've been working with Golang for a while now and currently diving into Rust. I love tinkering with both front and backend development and always looking for new ways to expand my programming knowledge. If you have any questions or just want to chat, shoot me an email at "<a class="text-stone-400 underline" href="mailto:me@zackmyers.io">"me@zackmyers.io"</a>"."</p>
         </div>
     }
 }

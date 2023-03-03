@@ -1,7 +1,8 @@
 use leptos::*;
+use leptos_meta::*;
+use leptos_router::*;
 
 use cfg_if::cfg_if;
-use leptos_router::use_params_map;
 use serde::{Deserialize, Serialize};
 
 use crate::components::markdown::{Markdown, MarkdownProps};
@@ -9,10 +10,9 @@ use crate::components::markdown::{Markdown, MarkdownProps};
 cfg_if! {
     if #[cfg(feature = "ssr")] {
         use sqlx::{Pool, postgres::{Postgres, PgPoolOptions}};
-        use std::env;
 
         pub async fn db() -> Result<Pool<Postgres>, ServerFnError> {
-            let uri = env::var("DATABASE_URL").unwrap_or("postgres://postgres:postgres@localhost:5432/postgres".to_string());
+            let uri = std::env::var("DATABASE_URL").unwrap_or("postgres://postgres:postgres@localhost:5432/postgres".to_string());
 
             PgPoolOptions::new()
                 .max_connections(5)
@@ -83,7 +83,7 @@ pub fn BlogPost(cx: Scope) -> impl IntoView {
     view! { cx,
         <div class="mt-8 w-full">
             <Suspense fallback=|| view! { cx, "Loading..." }>
-                {match post.read() {
+                {match post.read(cx) {
                     Some(Ok(v)) => view! { cx,
                         <h1 class="text-4xl font-bold text-stone-50">{v.title}</h1>
                         <Markdown md=Some(v.post) />
