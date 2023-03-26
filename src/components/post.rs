@@ -82,13 +82,23 @@ pub fn BlogPost(cx: Scope) -> impl IntoView {
 
     view! { cx,
         <div class="mt-8 w-full">
-            <Suspense fallback=|| view! { cx, "Loading..." }>
+            <Suspense fallback=|| {
+                view! { cx, "Loading..." }
+            }>
                 {match post.read(cx) {
-                    Some(Ok(v)) => view! { cx,
-                        <h1 class="text-4xl font-bold text-stone-50">{v.title}</h1>
-                        <Markdown md=Some(v.post) />
-                    },
-                    _ => view! {cx, <><Markdown md=Some("error".to_string()) /></> }
+                    Some(Ok(v)) => {
+                        view! { cx,
+                            <h1 class="text-4xl font-bold text-stone-50">{v.title}</h1>
+                            <Markdown md=Some(v.post)/>
+                        }
+                    }
+                    _ => {
+                        view! { cx,
+                            <>
+                                <Markdown md=Some("error".to_string())/>
+                            </>
+                        }
+                    }
                 }}
             </Suspense>
         </div>
